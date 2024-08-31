@@ -7,28 +7,14 @@ import { toast } from 'react-hot-toast';
 import { useMutation } from '@tanstack/react-query';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { defaultContactsData,Contacts } from './data';
+import { contactsSchema } from './validation';
 
-// Define schema for contacts
-const contactsSchema = Yup.object().shape({
-  primaryContacts: Yup.array().of(
-    Yup.object().shape({
-      name: Yup.string().required('Name is required'),
-      role: Yup.string().required('Role is required'),
-      contact: Yup.string().required('Contact information is required'),
-    })
-  ).required('At least one contact is required'),
-});
 
-// Define initial values
-const defaultValues = {
-  primaryContacts: [
-    { name: '', role: '', contact: '' },
-  ],
-};
 
-const ContactsForm = () => {
+export const CreateContactsForm = () => {
   const { control, handleSubmit, formState: { errors, isSubmitting } } = useForm({
-    defaultValues,
+    defaultValues:defaultContactsData,
     resolver: yupResolver(contactsSchema),
   });
 
@@ -38,7 +24,7 @@ const ContactsForm = () => {
   });
 
   const mutation = useMutation({
-    mutationFn: (formData) => {
+    mutationFn: async (formData:Contacts) => {
       // Replace with your API call
       console.log('Submitting contacts:', formData);
       return fetch('/api/contacts', {
@@ -58,7 +44,7 @@ const ContactsForm = () => {
   });
 
   const onSubmit = (data:any) => {
-    mutation.mutate(data);
+    mutation.mutateAsync(data);
   };
 
   return (
@@ -136,5 +122,3 @@ const ContactsForm = () => {
     </form>
   );
 };
-
-export default ContactsForm;

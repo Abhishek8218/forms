@@ -15,6 +15,7 @@ export const CreateDemographicsForm: React.FC = () => {
   });
 
   const mutation = useMutation({
+    mutationKey: ['demographics'],
     mutationFn: async (formData: Demographics) => {
       console.log('Submitting demographics:', formData);
       const response = await fetch('/api/demographics', {

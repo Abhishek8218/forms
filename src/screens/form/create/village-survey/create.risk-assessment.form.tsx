@@ -13,7 +13,7 @@ import { riskAssessmentSchema } from './validation';
 
 
 
-const RiskAssessmentForm = () => {
+export const CreateRiskAssessmentForm = () => {
   const {
     control,
     handleSubmit,
@@ -24,6 +24,7 @@ const RiskAssessmentForm = () => {
   });
 
   const mutation = useMutation({
+    mutationKey: ['riskAssessment'],
     mutationFn: async (formData:RiskAssessment) => {
         console.log('Submitting risk assessment:', formData);
       // Replace with your API call
@@ -80,5 +81,3 @@ const RiskAssessmentForm = () => {
     </form>
   );
 };
-
-export default RiskAssessmentForm;

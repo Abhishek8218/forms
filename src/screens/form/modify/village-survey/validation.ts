@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 // Schema for metadata object
 export const metadataSchema = Yup.object().shape({
-  surveyDate: Yup.date().required('Survey date is required'),
+    surveyDate: Yup.string().strict(true).required('Survey date is required'),
   surveyor: Yup.object().shape({
     employeeId: Yup.string().required('Employee ID is required'),
     name: Yup.string().required('Surveyor name is required'),

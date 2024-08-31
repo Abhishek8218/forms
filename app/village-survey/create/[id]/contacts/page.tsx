@@ -1,9 +1,9 @@
-import ContactsForm from '@/src/screens/form/create/village-survey/create.contacts.form'
+import {CreateContactsForm} from '@/src/screens/form'
 import React from 'react'
 
 const page = () => {
   return (
-    <div><ContactsForm/></div>
+    <div><CreateContactsForm/></div>
   )
 }
 

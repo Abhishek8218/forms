@@ -10,7 +10,7 @@ import { socialStructureSchema } from './validation';
 
 
 
-const SocialStructureForm = () => {
+export const CreateSocialStructureForm = () => {
   const {
     control,
     handleSubmit,
@@ -21,6 +21,7 @@ const SocialStructureForm = () => {
   });
 
   const mutation = useMutation({
+    mutationKey: ['socialStructure'],
     mutationFn: async (formData:SocialStructure) => {
       // Replace with your API call
       console.log('Submitting social structure:', formData);
@@ -201,4 +202,4 @@ const SocialStructureForm = () => {
   );
 };
 
-export default SocialStructureForm;
+
